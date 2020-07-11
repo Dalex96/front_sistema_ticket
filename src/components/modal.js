@@ -27,17 +27,24 @@ class Modal extends React.Component{
 
 	saveValues = (e) => {
 		e.preventDefault()
-		console.log(this.props.data.ticket._id)
-		if(this.props.data.act === "new"){
-			this.props.newTicket(this.state)
-		}else if(this.props.data.act === "update"){
-			this.props.updateTicket(this.props.data.ticket._id, this.state)
+		console.log(this.state)
+		if(this.state.ticket_pedido && this.state.id_user){
+			console.log("tiene datos")
+			if(this.props.data.act === "new"){
+				this.props.newTicket(this.state)
+				window.location.reload(true);
+			}else if(this.props.data.act === "update"){
+				console.log("paso")
+				this.props.updateTicket(this.props.data.ticket._id, this.state)
+				window.location.reload(true);
+			}
+		}else{
+			console.log("no tiene datos")
 		}
 		this.setState({
 			ticket_pedido:"",
 			id_user:""
 		})
-		window.location.reload(true);
 	}
 	
 	render(){
